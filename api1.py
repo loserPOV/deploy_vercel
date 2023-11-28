@@ -8,13 +8,16 @@ app = FastAPI()
 
 data = pd.read_csv("data.csv")
 
+@app.get("/")
+def handler():
+    return{"message": "hello home"}
+
 @app.get("/data")
 def handler():
     return data.to_dict(orient='records')
 
 
-
-@app.get("/")
+@app.get("/secret")
 def handler(request: Request):
     headers = request.headers
     #retrieve User-Agent key in headers
@@ -28,11 +31,9 @@ def handler(request: Request):
             raise HTTPException(status_code=500, detail='key salah')
         else:
             return {
-                "message": "Halaman Utama",
+                "message": "Halaman Secret",
                 "agent": agent
             }
-
-    
 
 
 @app.get("/home/{user}")
