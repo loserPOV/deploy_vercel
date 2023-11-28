@@ -1,20 +1,20 @@
 from fastapi import FastAPI, HTTPException, Request
 #cara jalanin di terminal -> uvicorn <nama_file>:<variable_penampung_FastAPI>
-import pandas as pd
+# import pandas as pd
 
 key = 'secret123'
 
 app = FastAPI()
 
-data = pd.read_csv("data.csv")
+# data = pd.read_csv("data.csv")
 
 @app.get("/")
 def handler():
     return{"message": "hello home"}
 
-@app.get("/data")
-def handler():
-    return data.to_dict(orient='records')
+# @app.get("/data")
+# def handler():
+#     return data.to_dict(orient='records')
 
 
 @app.get("/secret")
